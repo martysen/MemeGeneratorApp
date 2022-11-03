@@ -4,20 +4,24 @@ import memesData from "../memesData";
 function Meme() {
   // creating a memeImage variable assigned to an empty string
   // and a setter for memeImage
-  const [memeImage, setMemeImage] = React.useState(
-    "https://i.imgflip.com/261o3j.jpg"
-  );
+  const [memeImage, setMemeImage] = React.useState("");
 
-  // Set the new state. Note we don't need to keep track of old image, so we will just pass the new url value and not a callback function
-  function getMemeImage() {
+  function getMemeImage(e) {
+    // Without this the page re-loads and state reverts back to original state
+    e.preventDefault();
     // memesData -> data -> memes[] -> key items
     const memesArray = memesData.data.memes;
     const randomNumber = Math.floor(Math.random() * memesArray.length);
-    console.log(randomNumber);
 
+    // Set the new state. Note we don't need to keep track of old image, so we will just pass the new url value and not a callback function
     setMemeImage(memesArray[randomNumber].url);
-    console.log(`Value of memeImage is ${memesArray[randomNumber].url}`);
+    // console.log(randomNumber);
+    // console.log(`Value of memeImage is ${memesArray[randomNumber].url}`);
   }
+
+  React.useEffect(() => {
+    console.log(memeImage);
+  }, [memeImage]);
 
   return (
     <main>
@@ -33,7 +37,6 @@ function Meme() {
         </button>
       </form>
       {/* Use memeImage variable as src to create an img element */}
-      <p> The value of url is {memeImage}</p>
       <img src={memeImage} className="meme-image" alt="" />
     </main>
   );
