@@ -15,8 +15,6 @@ function Meme() {
 
     // Set the new state. Note we don't need to keep track of old image, so we will just pass the new url value and not a callback function
     setMemeImage(memesArray[randomNumber].url);
-    // console.log(randomNumber);
-    // console.log(`Value of memeImage is ${memesArray[randomNumber].url}`);
   }
 
   React.useEffect(() => {
