@@ -7,8 +7,10 @@ function Meme() {
   const [memeImage, setMemeImage] = React.useState("");
 
   function getMemeImage(e) {
-    // Without this the page re-loads and state reverts back to original state
-    e.preventDefault();
+    // Within <form> element, if you don't do <button type = "button"> Click Me </button>
+    // Without the following line the page re-loads and state reverts back to original state
+    // Read more about default html form behavior: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type
+    // e.preventDefault();
     // memesData -> data -> memes[] -> key items
     const memesArray = memesData.data.memes;
     const randomNumber = Math.floor(Math.random() * memesArray.length);
@@ -26,7 +28,7 @@ function Meme() {
           className="form-input"
           placeholder="Bottom Text Here"
         />
-        <button className="form-button" onClick={getMemeImage}>
+        <button className="form-button" onClick={getMemeImage} type="button">
           Select a new meme image
         </button>
       </form>
