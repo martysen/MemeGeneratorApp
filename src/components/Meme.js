@@ -17,10 +17,6 @@ function Meme() {
     setMemeImage(memesArray[randomNumber].url);
   }
 
-  React.useEffect(() => {
-    console.log(memeImage);
-  }, [memeImage]);
-
   return (
     <main>
       <form className="form">
