@@ -59,5 +59,6 @@ main {
 }
 
 .meme-image {
+  margin-top: 12px;
   max-width: 100%;
 }
