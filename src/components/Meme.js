@@ -2,21 +2,47 @@ import React from "react";
 import memesData from "../memesData";
 
 function Meme() {
-  // creating a memeImage variable assigned to an empty string
-  // and a setter for memeImage
-  const [memeImage, setMemeImage] = React.useState("");
+  // creating a memeImage variable assigned to an empty string and a setter for memeImage
+  // const [memeImage, setMemeImage] = React.useState(
+  //   "https://i.imgflip.com/25w3.jpg"
+  // );
 
+  // function getMemeImage(e) {
+  //   // Within <form> element, if you don't do <button type = "button"> Click Me </button>
+  //   // Without the following line the page re-loads and state reverts back to original state
+  //   // Read more about default html form behavior: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type
+  //   // e.preventDefault();
+  //   // memesData -> data -> memes[] -> key items
+  //   const memesArray = memesData.data.memes;
+  //   const randomNumber = Math.floor(Math.random() * memesArray.length);
+
+  //   // Set the new state. Note we don't need to keep track of old image, so we will just pass the new url value and not a callback function
+  //   setMemeImage(memesArray[randomNumber].url);
+  // }
+
+  /*** Alternative: Creating an Object that will store top and btm texts and Meme Image as object
+   *   Then, saving the state of the object
+   */
+  const [meme, setMeme] = React.useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "https://i.imgflip.com/25w3.jpg",
+  });
+
+  // Grabbing our data repository and returning it back to allMemeImages for state management
+  const [allMemeImages, setAllMemeImages] = React.useState(memesData);
+
+  // Redefining our onClick()
   function getMemeImage(e) {
-    // Within <form> element, if you don't do <button type = "button"> Click Me </button>
-    // Without the following line the page re-loads and state reverts back to original state
-    // Read more about default html form behavior: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type
-    // e.preventDefault();
-    // memesData -> data -> memes[] -> key items
-    const memesArray = memesData.data.memes;
+    const memesArray = allMemeImages.data.memes;
     const randomNumber = Math.floor(Math.random() * memesArray.length);
+    const url = memesArray[randomNumber].url;
 
-    // Set the new state. Note we don't need to keep track of old image, so we will just pass the new url value and not a callback function
-    setMemeImage(memesArray[randomNumber].url);
+    // Set the new state, tracking previous memes and setting new url
+    setMeme((prevMeme) => ({
+      ...prevMeme,
+      randomImage: url,
+    }));
   }
 
   return (
@@ -32,8 +58,8 @@ function Meme() {
           Select a new meme image
         </button>
       </form>
-      {/* Use memeImage variable as src to create an img element */}
-      <img src={memeImage} className="meme-image" alt="" />
+      {/* Use meme object as src to create an img element */}
+      <img src={meme.randomImage} className="meme-image" alt="" />
     </main>
   );
 }
