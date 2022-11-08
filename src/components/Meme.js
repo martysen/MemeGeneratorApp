@@ -24,8 +24,8 @@ function Meme() {
    *   Then, saving the state of the object
    */
   const [meme, setMeme] = React.useState({
-    topText: "",
-    bottomText: "",
+    topText: "sample",
+    bottomText: "sample",
     randomImage: "https://i.imgflip.com/25w3.jpg",
   });
 
@@ -45,21 +45,43 @@ function Meme() {
     }));
   }
 
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setMeme((prevMeme) => ({
+      ...prevMeme,
+      [name]: value,
+    }));
+  }
+
   return (
     <main>
-      <form className="form">
-        <input type="text" className="form-input" placeholder="Top Text Here" />
+      <div className="form">
+        <input
+          type="text"
+          className="form-input"
+          placeholder="Top Text Here"
+          name="topText"
+          value={meme.topText}
+          onChange={handleChange}
+        />
         <input
           type="text"
           className="form-input"
           placeholder="Bottom Text Here"
+          name="bottomText"
+          value={meme.bottomText}
+          onChange={handleChange}
         />
-        <button className="form-button" onClick={getMemeImage} type="button">
+        <button className="form-button" onClick={getMemeImage}>
           Select a new meme image
         </button>
-      </form>
+      </div>
       {/* Use meme object as src to create an img element */}
-      <img src={meme.randomImage} className="meme-image" alt="" />
+      <div className="meme">
+        <img src={meme.randomImage} className="meme-image" alt="" />
+        <h2 className="meme-text top">{meme.topText}</h2>
+        <h2 className="meme-text bottom">{meme.bottomText}</h2>
+      </div>
     </main>
   );
 }

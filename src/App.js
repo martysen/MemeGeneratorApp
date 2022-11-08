@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Meme />
       {/* <ReactStateTutorial /> */}
-      <FormsTutorial />
+      {/* <FormsTutorial /> */}
     </div>
   );
 }
