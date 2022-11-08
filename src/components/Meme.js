@@ -45,6 +45,7 @@ function Meme() {
     }));
   }
 
+  // when user types the text, this function will update the state
   function handleChange(e) {
     const { name, value } = e.target;
     setMeme((prevMeme) => ({

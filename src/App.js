@@ -1,5 +1,6 @@
 import "./App.css";
 import FormsTutorial from "./components/FormsTutorial";
+import APITutorial from "./components/APITutorial";
 import Header from "./components/Header";
 import Meme from "./components/Meme";
 
@@ -14,6 +15,7 @@ function App() {
       <Meme />
       {/* <ReactStateTutorial /> */}
       {/* <FormsTutorial /> */}
+      <APITutorial />
     </div>
   );
 }
