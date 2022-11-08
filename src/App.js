@@ -1,5 +1,5 @@
 import "./App.css";
-import FormTutorial from "./components/FormsTutorial";
+import FormsTutorial from "./components/FormsTutorial";
 import Header from "./components/Header";
 import Meme from "./components/Meme";
 
@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Meme />
       {/* <ReactStateTutorial /> */}
-      <FormTutorial />
+      <FormsTutorial />
     </div>
   );
 }
