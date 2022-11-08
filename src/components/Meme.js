@@ -1,5 +1,6 @@
 import React from "react";
-import memesData from "../memesData";
+// Comment to replace with API call
+// import memesData from "../memesData";
 
 function Meme() {
   // creating a memeImage variable assigned to an empty string and a setter for memeImage
@@ -8,10 +9,13 @@ function Meme() {
   // );
 
   // function getMemeImage(e) {
-  //   // Within <form> element, if you don't do <button type = "button"> Click Me </button>
-  //   // Without the following line the page re-loads and state reverts back to original state
-  //   // Read more about default html form behavior: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type
-  //   // e.preventDefault();
+  /**
+   Within <form> element, if you don't do <button type = "button"> Click Me </button>
+   Without the following line the page re-loads and state reverts back to original state
+   Read more about default html form behavior: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type
+   * 
+   *  */
+  // e.preventDefault();
   //   // memesData -> data -> memes[] -> key items
   //   const memesArray = memesData.data.memes;
   //   const randomNumber = Math.floor(Math.random() * memesArray.length);
@@ -29,14 +33,27 @@ function Meme() {
     randomImage: "https://i.imgflip.com/25w3.jpg",
   });
 
-  // Grabbing our data repository and returning it back to allMemeImages for state management
-  const [allMemeImages, setAllMemeImages] = React.useState(memesData);
+  // Grabbing our data repository and returning it back to allMemes for state management
+  const [allMemes, setAllMemes] = React.useState([]);
+
+  // API call to fetch the data
+  React.useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => setAllMemes(data.data.memes))
+      .catch((err) => console.log(`Some error occurred in API call`));
+  }, []);
+
+  //test if data is fetched: array of objects
+  console.log(allMemes);
 
   // Redefining our onClick()
   function getMemeImage(e) {
-    const memesArray = allMemeImages.data.memes;
-    const randomNumber = Math.floor(Math.random() * memesArray.length);
-    const url = memesArray[randomNumber].url;
+    // as we store the API into overall array we don't need the following 2 lines of code
+    // const memesArray = allMemes.data.memes;
+    // const memesArray = allMemes.memes;
+    const randomNumber = Math.floor(Math.random() * allMemes.length);
+    const url = allMemes[randomNumber].url;
 
     // Set the new state, tracking previous memes and setting new url
     setMeme((prevMeme) => ({

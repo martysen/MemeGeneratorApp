@@ -15,7 +15,7 @@ function App() {
       <Meme />
       {/* <ReactStateTutorial /> */}
       {/* <FormsTutorial /> */}
-      <APITutorial />
+      {/* <APITutorial /> */}
     </div>
   );
 }
